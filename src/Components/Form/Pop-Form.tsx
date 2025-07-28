@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Button } from '../Button-Component/Button';
 import './Pop-Form.css';
-export function PopForm() {
+const VARIANT = ['notice', 'warning', 'success', 'error'];
+export function PopForm({ setPopFormDetails, setsLiveToastOn, isLiveToastOn }) {
+  function onclick() {
+    setsLiveToastOn(!isLiveToastOn);
+    console.log('clicked');
+  }
   const [comment, setComment] = useState('');
   const [variantSelected, setVariantSelected] = useState(VARIANT[0]);
   return (
@@ -16,7 +21,11 @@ export function PopForm() {
           name="txt"
           id="message"
           value={comment}
-          onChange={e => setComment(e.target.value)}
+          onChange={e => {
+            setComment(e.target.value);
+            const newArray = e.target.value;
+            setPopFormDetails(prev => [newArray, prev[1]]);
+          }}
         ></textarea>
       </div>
       <div className="form-checkbox">
@@ -30,7 +39,11 @@ export function PopForm() {
                 id={option}
                 value={option}
                 checked={option === variantSelected}
-                onChange={event => setVariantSelected(event.target.value)}
+                onChange={event => {
+                  setVariantSelected(event.target.value);
+                  const newArray = event.target.value;
+                  setPopFormDetails(prev => [prev[0], newArray]);
+                }}
               />
               {option}
             </label>
@@ -39,10 +52,8 @@ export function PopForm() {
       </div>
       <div className="buttons">
         <Button>Pop</Button>
-        <Button>Live</Button>
+        <Button onclick={onclick}>Live Toggle</Button>
       </div>
     </form>
   );
 }
-
-const VARIANT = ['notice', 'warning', 'success', 'error'];

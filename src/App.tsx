@@ -1,10 +1,10 @@
 import './App.css';
-import { PopForm } from './Components/Form/Pop-Form';
+import { ToastPage } from './Components/Toast-Tester-page-comp/Toast-Testing-Page';
 
 function App() {
   return (
     <div>
-      <PopForm></PopForm>
+      <ToastPage></ToastPage>
     </div>
   );
 }

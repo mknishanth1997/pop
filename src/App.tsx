@@ -1,10 +1,14 @@
 import './App.css';
+import { ToastProvider } from './Components/Context-Api/Toast-Context';
 import { ToastPage } from './Components/Toast-Tester-page-comp/Toast-Testing-Page';
 
 function App() {
   return (
     <div>
-      <ToastPage></ToastPage>
+      <ToastProvider>
+        {' '}
+        <ToastPage></ToastPage>
+      </ToastProvider>
     </div>
   );
 }

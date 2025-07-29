@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { Button } from '../Button-Component/Button';
 import './Pop-Form.css';
 const VARIANT = ['notice', 'warning', 'success', 'error'];
-export function PopForm({ setPopFormDetails, setsLiveToastOn, isLiveToastOn, setToasts }) {
+export function PopForm({
+  setPopFormDetails,
+  setsLiveToastOn,
+  isLiveToastOn,
+  setToasts,
+  handleClick,
+}) {
   function onclick() {
     setsLiveToastOn(!isLiveToastOn);
     console.log('clicked');
@@ -62,7 +68,7 @@ export function PopForm({ setPopFormDetails, setsLiveToastOn, isLiveToastOn, set
       </div>
       <div className="buttons">
         <Button>Pop</Button>
-        <Button onclick={onclick}>Live Toggle</Button>
+        <Button onclick={handleClick}>Live Toggle</Button>
       </div>
     </form>
   );

@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { PopForm } from '../Form/Pop-Form';
 import { Toast } from '../Toast-Component/Toast';
 import './Toast-Testing-page.css';
-
+import { useToast } from '../Context-Api/Toast-Context';
 export function ToastPage() {
+  const { addToast } = useToast();
+  function handleClick() {
+    addToast({ message: 'Hi', variant: 'error' });
+  }
   const [isLiveToastOn, setsLiveToastOn] = useState(false);
   const [popFormDetails, setPopFormDetails] = useState(['', '']);
   const [toasts, setToasts] = useState([]);
@@ -33,6 +37,7 @@ export function ToastPage() {
             setsLiveToastOn={setsLiveToastOn}
             isLiveToastOn={isLiveToastOn}
             setToasts={setToasts}
+            handleClick={handleClick}
           ></PopForm>
         </div>
         <div className="toaster">

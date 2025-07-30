@@ -49,3 +49,24 @@
 .toast-close:hover {
   color: #000;
 }
+
+/* Variant classes */
+div.toast.error {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+div.toast.notice {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+div.toast.warning {
+  background-color: #fff7ed;
+  color: #92400e;
+}
+
+div.toast.success {
+  background-color: #ecfdf5;
+  color: #065f46;
+}

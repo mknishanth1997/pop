@@ -1,15 +1,12 @@
 import './App.css';
-import { ToastProvider } from './Components/Context-Api/Toast-Context';
-import { ToastPage } from './Components/Toast-Tester-page-comp/Toast-Testing-Page';
+import { ToastProvider } from './Context-Api/ToastProvider';
+import { Pop_Page } from './Form/Pop-page/Pop-page';
 
 function App() {
   return (
-    <div>
-      <ToastProvider>
-        {' '}
-        <ToastPage></ToastPage>
-      </ToastProvider>
-    </div>
+    <ToastProvider>
+      <Pop_Page></Pop_Page>
+    </ToastProvider>
   );
 }
 

@@ -1,33 +1,20 @@
 import { useState } from 'react';
-import { Button } from '../Button-Component/Button';
-import './Pop-Form.css';
+import './Form.css';
+import { useToast } from '../Context-Api/ToastProvider';
 const VARIANT = ['notice', 'warning', 'success', 'error'];
-export function PopForm({
-  setPopFormDetails,
-  setsLiveToastOn,
-  isLiveToastOn,
-  setToasts,
-  handleClick,
-}) {
-  function onclick() {
-    setsLiveToastOn(!isLiveToastOn);
-    console.log('clicked');
-  }
-
+export function PopForm() {
+  const { addToast } = useToast(); // this must work
   const [comment, setComment] = useState('');
   const [variantSelected, setVariantSelected] = useState(VARIANT[0]);
   return (
     <form
       onSubmit={e => {
         e.preventDefault();
-        setToasts(prev => [
-          ...prev,
-          {
-            id: crypto.randomUUID(), // or use uuid()
-            variant: variantSelected,
-            message: comment,
-          },
-        ]);
+        addToast({
+          id: crypto.randomUUID(),
+          variant: variantSelected,
+          message: comment,
+        });
         setComment('');
       }}
     >
@@ -39,8 +26,6 @@ export function PopForm({
           value={comment}
           onChange={e => {
             setComment(e.target.value);
-            const newArray = e.target.value;
-            setPopFormDetails(prev => [newArray, prev[1]]);
           }}
         ></textarea>
       </div>
@@ -57,8 +42,6 @@ export function PopForm({
                 checked={option === variantSelected}
                 onChange={event => {
                   setVariantSelected(event.target.value);
-                  const newArray = event.target.value;
-                  setPopFormDetails(prev => [prev[0], newArray]);
                 }}
               />
               {option}
@@ -67,8 +50,7 @@ export function PopForm({
         })}
       </div>
       <div className="buttons">
-        <Button>Pop</Button>
-        <Button onclick={handleClick}>Live Toggle</Button>
+        <button>Pop</button>
       </div>
     </form>
   );
